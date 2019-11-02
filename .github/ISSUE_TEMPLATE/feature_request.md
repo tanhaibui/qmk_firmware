@@ -1,6 +1,9 @@
 ---
 name: Feature request
 about: Suggest a new feature or changes to existing features 
+title: "[Feature]"
+labels: enhancement
+assignees: ''
 ---
 <!--- Provide a general summary of the changes you want in the title above. -->
 
