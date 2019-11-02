@@ -4,9 +4,7 @@ about: Propose changes - not really improvement - to existing features.
 title: "[CR]"
 labels: change
 assignees: ''
-
 ---
-
 <!--- Provide a general summary of the changes you want in the title above. -->
 
 ## Change Request Type
@@ -18,6 +16,5 @@ assignees: ''
 - [ ] Experiment
 
 ## Description
-
 
 ## Expectation
