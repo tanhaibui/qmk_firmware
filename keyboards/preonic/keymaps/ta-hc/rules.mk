@@ -1,3 +1,5 @@
+USER_NAME := tanbui
+
 SRC += muse.c
 TAP_DANCE_ENABLE = yes
 CONSOLE_ENABLE = yes
