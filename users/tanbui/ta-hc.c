@@ -5,6 +5,19 @@
 #include "combos.h"
 #include "layers.h"
 
+#ifdef AUDIO_ENABLE
+    #include "audio.h"
+    #include "song_list.h"
+#endif
+
+#ifdef AUDIO_ENABLE
+
+// float song_ode_to_joy[][2]  = SONG(ODE_TO_JOY);
+float song_rock_a_bye_baby[][2]  = SONG(ROCK_A_BYE_BABY);
+float song_planck[][2]  = SONG(PLANCK_SOUND);
+
+#endif /* AUDIO_ENABLE */
+
 extern keymap_config_t keymap_config;
 userspace_config_t runtime_userspace_config;
 
@@ -48,9 +61,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       registerMods(record, MOD_LCTL);
       registerCode(record, KC_RGHT);
       return false;
-    case SWITCHLOW:
+    case INVERTLOW:
       if (record->event.pressed) { 
         layer_invert(_LOWFAKER);
+        PLAY_SONG(song_rock_a_bye_baby);
+      }
+      return false;
+    case INVERTRAI:
+      if (record->event.pressed) { 
+        layer_invert(_RAIFAKER);
+        PLAY_SONG(song_planck);
       }
       return false;
     case ESECOLON:
@@ -59,7 +79,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case EDECOLON:
       runtime_userspace_config.dead_semicolon = true;
       break;
-    case POWER_RANGE ... FUNCTION: // FUNCTION is the last EAGER_RANGE key
+    case POWER_RANGE ... DEGIT: // Currently DEGIT is the last TAP_RANGE key
       return process_key(keycode, &record->event);
     case DEAD_RANGE: // Currently, DEAD_RANGE only has one key
       for (int powerKey = EAGER_RANGE; powerKey < DEAD_RANGE; powerKey++) {
@@ -98,10 +118,11 @@ layer_state_t layer_state_set_keymap (layer_state_t state) {
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-  state = update_tri_layer_state(state, _FN, _DIGIT, _FNSFT);
-  state = update_tri_layer_state(state, _FN, _LFLIP, _LSYMBL);
+  state = update_tri_layer_state(state, _FN, _LFLIP, _FNSFT);
+  state = update_tri_layer_state(state, _FN, _LOWER, _FNALT);
+  state = update_tri_layer_state(state, _FN, _RAISE, _RAISEALT);
   state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-  state = update_tri_layersToLayer_state(state, 2, (uint8_t[]){_LOWER, _RAISE}, _FN, _FNALT);
+  // state = update_tri_layersToLayer_state(state, 2, (uint8_t[]){ _RAISE, _DEADSCLN }, _LOWER, _ADJUST);
 
   return layer_state_set_keymap(state);
 }
@@ -109,19 +130,17 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 
 uint32_t update_tri_layersToLayer_state(uint32_t state, uint8_t ls1len, uint8_t *ls1, uint8_t l2, uint8_t l3) {
-  bool isOnOthers[3] = {false, false, false};
-  bool isOnL2 = isOnLayer(state, l2);
+  uint8_t ls1Mask = 0;
+  bool isL2On = isOnLayer(state, l2);
 
   for (int i = 0; i < ls1len; i++) {
-    bool isOnL1I = isOnLayer(state, ls1[i]);
-    for (int j = 0; j < ls1len; j++) {
-      if (j != i)
-        isOnOthers[j] |= isOnL1I;
-    }
+    bool isLs1iOn = isOnLayer(state, ls1[i]);
+    ls1Mask |= (isLs1iOn ? 1 << i : 0);
   }
 
   for (int i = 0; i < ls1len; i++) {
-    if (!isOnOthers[i] || !isOnL2)
+    uint8_t isNotOnlyLs1iOn = ls1Mask & ~(1 << i);
+    if (!isNotOnlyLs1iOn || !isL2On)
       state = update_tri_layer_state(state, ls1[i], l2, l3);
   }
 

@@ -9,7 +9,8 @@ enum custom_keycodes {
   ERWRITE,  // Write runtime userspace eeconfig
   ESECOLON, // Normal semicolon
   EDECOLON, // Dead-key semicolon
-  SWITCHLOW,// Toggle LOWFAKER layer
+  INVERTLOW,// Toggle LOWFAKER layer
+  INVERTRAI,// Toggle RAISE layer
   KEEPSFT,
 
   POWER_RANGE
@@ -25,20 +26,22 @@ enum power_keycodes {
 
 enum eager_keycodes {
   LFLIP = EAGER_RANGE,
+  SPLFLIP,
   SFTESC,
+  RMOD1,
   MOD3,
   MOD3R,
-  MOD4,
-  RMOD3,
+  MOD4R,
   RSFTSLS,
-  OPTION,
-  FUNCTION,
 
   TAP_RANGE
 };
 
 enum tap_keycodes {
-  DEAD_RANGE = TAP_RANGE
+  OPTION = TAP_RANGE,
+  FUNCTION,
+  DEGIT,
+  DEAD_RANGE
 };
 
 enum dead_keycodes {

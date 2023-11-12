@@ -53,6 +53,7 @@
 
 // Modifier extensions
 #define CG(kc)    (QK_LCTL | QK_LGUI | (kc))
+// MT remark: Mod bit from 0x01 -> 0x08; (((mod)&0x1F) << 8) -> 0x1F00
 #define MC(kc)    MT(MOD_LCTL, (kc))            // Tap for (kc), hold for Ĉ
 #define MS(kc)    MT(MOD_LSFT, (kc))            // Tap for (kc), hold for ⇧
 #define MA(kc)    MT(MOD_LALT, (kc))            // Tap for (kc), hold for Alt
@@ -62,3 +63,4 @@
 #define MX(kc)    MT(MOD_LCTL|MOD_LSFT, (kc))   // Tap for (kc), hold for Ĉ⇧
 #define MK(kc)    MT(MOD_LCTL|MOD_LALT, (kc))   // Tap for (kc), hold for ĈAlt
 #define MW(kc)    MT(MOD_LCTL|MOD_LGUI, (kc))   // Tap for (kc), hold for ĈĜ
+#define MZ(kc)    MT(MOD_LALT|MOD_LSFT, (kc))   // Tap for (kc), hold for Alt⇧

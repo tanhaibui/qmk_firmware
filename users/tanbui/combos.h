@@ -69,10 +69,18 @@ typedef struct {
   bool (*process) (uint16_t keycode, keyevent_t *event, bool interrupted, uint16_t interruptedKeycode);
 } AnyKOrch;
 
+typedef struct {
+  uint16_t keycode1;
+  uint16_t keycode2;
+  uint16_t keycodeOn;
+  uint8_t keycode1FirstMods;
+  uint8_t keycode1FirstLayer;
+  uint8_t keycode2FirstMods;
+  uint8_t keycode2FirstLayer;
+} ComboOrch;
 
-void process_combo_raisft(uint16_t keycode, bool down, Payload *payload);
 ComboComotionState process_combo_comotion(uint16_t keycode, bool down, Payload *payload);
-
+void process_combo_internal(uint16_t keycode, Payload *event);
 
 /**
  * process_record_user = [process_key()]
@@ -81,6 +89,7 @@ ComboComotionState process_combo_comotion(uint16_t keycode, bool down, Payload *
 */
 bool process_key(uint16_t keycode, keyevent_t *event);
 bool process_key_internal(uint16_t keycode, keyevent_t *event, bool interrupted, uint16_t interruptedKeycode);
+bool process_key_internal_with_combo(uint16_t keycode, keyevent_t *event, bool interrupted, uint16_t interruptedKeycode);
 bool process_key_command(uint16_t keycode, keyevent_t *event, bool interrupted, uint16_t interruptedKeycode);
 bool process_key_option(uint16_t keycode, keyevent_t *event, bool interrupted, uint16_t interruptedKeycode);
 bool process_key_scolon(uint16_t keycode, keyevent_t *event, bool interrupted, uint16_t interruptedKeycode);
@@ -93,4 +102,5 @@ void payload_insert_action(Payload *payload, Action action);
 void payload_execute(Payload *payload);
 Payload process_dead_strategy(uint16_t keycode, keyevent_t *event, bool interrupted, uint16_t interruptedKeycode);
 Payload process_eager_strategy(uint16_t keycode, keyevent_t *event, bool interrupted, uint16_t interruptedKeycode);
+Payload process_tap_strategy(uint16_t keycode, keyevent_t *event, bool interrupted);
 Payload process_any_key(uint16_t keycode, keyevent_t *event, bool interrupted);

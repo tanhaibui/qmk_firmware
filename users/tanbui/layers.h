@@ -1,26 +1,28 @@
 
 /* Define layer names */
 enum userspace_layers {
-  _QWERTY,    // 0
-  _GAME,
-  _DEADSCLN,
-  _LOWER,     // 8
-  _RAISE,     // 16
-  _ADJUST,    // 32   // +24  56 
-  _FN,        // 128  
-  _RFN,
-  _GAMF,
-  _DIGIT,
-  _CP,
+  _QWERTY,    // x00
+  _GAME,      // x01
+  _DEADSCLN,  // x02
+  _LOWER,     // x03
+  _RAISE,     // x04
+  _ADJUST,    // x05
+  _FN,        // x06
+  _RFN,       // x07
+  _GAMF,      // x08
+  _LSYMBL,    // x09
+  _LFLIP,     // x0A
+  _FNALT,     // x0B
+  _DIGIT,     // x0C
+  _CWIN,      // x0D
+  _RCWIN,     // x0E
   //_COLEMAK,
-  _LFLIP,
-  _FNALT,
+  _CP,        // x0F
   _FNSFT,
-  _CWIN,
-  _RCWIN,
+  _RAISEALT,
   _LMOUSE,    // 8192
-  _LSYMBL,    // 16384
-  _LOWFAKER
+  _LOWFAKER,
+  _RAIFAKER
 };
 
 // Momentarily actives layer
@@ -35,5 +37,6 @@ enum userspace_layers {
 #define DIG(kc)   (kc == 0 ? MO(_DIGIT)    : LT(_DIGIT, (kc)))       // Tap for (kc), hold for Digit
 #define LFL(kc)   (kc == 0 ? MO(_LFLIP)    : LT(_LFLIP, (kc)))       // Tap for (kc), hold for Middle
 #define LMOU(kc)  (kc == 0 ? MO(_LMOUSE)   : LT(_LMOUSE, (kc)))      // Tap for (kc), hold for LMouse
+#define LSYM(kc)  (kc == 0 ? MO(_LSYMBL)   : LT(_LSYMBL, (kc)))      // Tap for (kc), hold for LSymbol
 #define LGCW      LM(_CWIN,   MOD_LGUI)
 #define LGRCW     LM(_RCWIN,  MOD_LGUI)

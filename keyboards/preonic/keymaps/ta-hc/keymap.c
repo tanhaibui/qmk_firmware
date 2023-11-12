@@ -236,6 +236,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                     FN_SFT_L4_______,                                     FN_SFT_R4_______
 ),
 
+[_RAISEALT] = LAYOUT_wrapper(
+  _______, A(KC_F1),A(KC_F2),A(KC_F3),A(KC_F4),A(KC_F5),A(KC_F6),A(KC_F7),A(KC_F8),A(KC_F9),A(KC_F10), _______,
+                    RAISE_ALT_L1____,                                     RAISE_ALT_R1____,
+                    RAISE_ALT_L2____,                                     RAISE_ALT_R2____,
+                    RAISE_ALT_L3____,                                     RAISE_ALT_R3____,
+                    RAISE_ALT_L4____,                                     RAISE_ALT_R4____
+),
+
 [_LMOUSE] = LAYOUT_wrapper(
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
                     LMOUSE_L1_______,                                     LMOUSE_R1_______,
@@ -263,6 +271,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                     LOWFAKER_L2_____,                                     LOWFAKER_R2_____,
                     LOWFAKER_L3_____,                                     LOWFAKER_R3_____,
                     LOWFAKER_L4_____,                                     LOWFAKER_R4_____
+),
+
+[_RAIFAKER] = LAYOUT_wrapper(
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+                    RAIFAKER_L1_____,                                     RAIFAKER_R1_____,
+                    RAIFAKER_L2_____,                                     RAIFAKER_R2_____,
+                    RAIFAKER_L3_____,                                     RAIFAKER_R3_____,
+                    RAIFAKER_L4_____,                                     RAIFAKER_R4_____
 ),
 
 [_CP] = LAYOUT_wrapper(
