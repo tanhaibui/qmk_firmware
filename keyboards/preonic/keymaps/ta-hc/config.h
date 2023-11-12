@@ -1,3 +1,5 @@
+#include QMK_KEYBOARD_H
+
 #pragma once
 
 #ifdef AUDIO_ENABLE
